@@ -65,6 +65,11 @@ class GrowingAutotracker {
     return await _channel.invokeMethod("flutterClickEvent", args);
   }
 
+  Future<void> flutterViewChangeEvent(Map<String, dynamic>? args) async {
+    if (args == null) return;
+    return await _channel.invokeMethod("flutterViewChangeEvent", args);
+  }
+
   Future<void> flutterPageEvent(Map<String, dynamic>? args) async {
     if (args == null) return;
     return await _channel.invokeMethod("flutterPageEvent", args);

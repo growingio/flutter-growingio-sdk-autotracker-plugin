@@ -42,15 +42,9 @@
     }else if ([methodName isEqualToString:@"cleanLoginUserId"]) {
         [[GrowingAutotracker sharedInstance] cleanLoginUserId];
     }else if ([methodName isEqualToString:@"flutterClickEvent"]) {
-        int index = ((NSNumber *)argDic[@"index"]).intValue;
-        long long ts = ((NSNumber *)argDic[@"pageShowTimestamp"]).longLongValue;
-        GrowingBaseBuilder *builder = GrowingViewElementEvent.builder.setEventType(GrowingEventTypeViewClick)
-         .setPath(argDic[@"path"])
-         .setPageShowTimestamp(ts)
-         .setXpath(argDic[@"xpath"])
-         .setIndex(index)
-        .setTextValue(argDic[@"textValue"]);
-        [[GrowingEventManager shareInstance] postEventBuidler:builder];
+        [self handleViewElementEvent:GrowingEventTypeViewClick arguments:argDic];
+    }else if ([methodName isEqualToString:@"flutterViewChangeEvent"]) {
+             [self handleViewElementEvent:GrowingEventTypeViewChange arguments:argDic];
     }else if ([methodName isEqualToString:@"flutterPageEvent"]) {
         long long ts = ((NSNumber *)argDic[@"timestamp"]).longLongValue;
         GrowingBaseBuilder *builder =
@@ -61,4 +55,17 @@
     }
     return YES;
 }
+
+- (void)handleViewElementEvent:(NSString *)eventType arguments:(NSDictionary *)argDic {
+        int index = ((NSNumber *)argDic[@"index"]).intValue;
+        long long ts = ((NSNumber *)argDic[@"pageShowTimestamp"]).longLongValue;
+        GrowingBaseBuilder *builder = GrowingViewElementEvent.builder.setEventType(GrowingEventTypeViewClick)
+         .setPath(argDic[@"path"])
+         .setPageShowTimestamp(ts)
+         .setXpath(argDic[@"xpath"])
+         .setIndex(index)
+        .setTextValue(argDic[@"textValue"]);
+        [[GrowingEventManager shareInstance] postEventBuidler:builder];
+}
+
 @end

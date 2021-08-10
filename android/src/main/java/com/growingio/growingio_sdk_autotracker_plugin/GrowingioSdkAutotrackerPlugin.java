@@ -51,6 +51,8 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
       onSetLoginUserId(call);
     }else if (call.method.equals("flutterClickEvent")) {
       onFlutterClickEvent(call);
+    }else if (call.method.equals("flutterViewChangeEvent")) {
+      onFlutterViewChangeEvent(call);
     }else if (call.method.equals("flutterPageEvent")) {
       onFlutterPageEvent(call);
     }else {
@@ -60,7 +62,14 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
     result.success(null);
   }
 
+  private void onFlutterViewChangeEvent(MethodCall call) {
+    onFlutterViewElementEvent(call,AutotrackEventType.VIEW_CHANGE);
+  }
   private void onFlutterClickEvent(MethodCall call){
+    onFlutterViewElementEvent(call,AutotrackEventType.VIEW_CLICK);
+  }
+  /// view element event
+  private void onFlutterViewElementEvent(MethodCall call, String EventType) {
     Map<String,Object> params = (Map<String, Object>)call.arguments;
     long ts = Long.parseLong(params.get("pageShowTimestamp").toString());
     int index = Integer.parseInt(params.get("index").toString());
@@ -71,7 +80,7 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
     }
     TrackMainThread.trackMain().postEventToTrackMain(
             new ViewElementEvent.Builder()
-                    .setEventType(AutotrackEventType.VIEW_CLICK)
+                    .setEventType(EventType)
                     .setPath(params.get("path").toString())
                     .setPageShowTimestamp(ts)
                     .setXpath(params.get("xpath").toString())
@@ -79,6 +88,7 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
                     .setTextValue(textValue)
     );
   }
+
 
   private void onFlutterPageEvent(MethodCall call){
     Map<String,Object> params = (Map<String, Object>)call.arguments;
