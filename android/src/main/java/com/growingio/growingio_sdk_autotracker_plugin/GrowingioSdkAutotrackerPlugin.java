@@ -64,6 +64,11 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
     Map<String,Object> params = (Map<String, Object>)call.arguments;
     long ts = Long.parseLong(params.get("pageShowTimestamp").toString());
     int index = Integer.parseInt(params.get("index").toString());
+    Object textobj = params.get("textValue");
+    String textValue = "";
+    if (textobj != null) {
+      textValue = textobj.toString();
+    }
     TrackMainThread.trackMain().postEventToTrackMain(
             new ViewElementEvent.Builder()
                     .setEventType(AutotrackEventType.VIEW_CLICK)
@@ -71,7 +76,7 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
                     .setPageShowTimestamp(ts)
                     .setXpath(params.get("xpath").toString())
                     .setIndex(index)
-                    .setTextValue(params.get("textValue").toString())
+                    .setTextValue(textValue)
     );
   }
 
