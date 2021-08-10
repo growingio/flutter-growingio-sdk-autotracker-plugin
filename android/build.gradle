@@ -1,0 +1,38 @@
+group 'com.growingio.growingio_sdk_autotracker_plugin'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+
+android {
+    compileSdkVersion 30
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/java'
+    }
+    defaultConfig {
+        minSdkVersion 16
+    }
+}
+
+dependencies {
+    implementation 'com.growingio.android:autotracker:latest.release'
+}

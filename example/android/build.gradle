@@ -1,0 +1,34 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.growingio.android:autotracker:3.2.1-06292-SNAPSHOT'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,33 @@
+PODS:
+  - Flutter (1.0.0)
+  - GrowingAnalytics/Autotracker (3.2.0):
+    - GrowingAnalytics/AutotrackerCore
+  - GrowingAnalytics/AutotrackerCore (3.2.0):
+    - GrowingAnalytics/TrackerCore
+  - GrowingAnalytics/TrackerCore (3.2.0)
+  - growingio_sdk_autotracker_plugin (1.0.0):
+    - Flutter
+    - GrowingAnalytics/Autotracker
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - growingio_sdk_autotracker_plugin (from `.symlinks/plugins/growingio_sdk_autotracker_plugin/ios`)
+
+SPEC REPOS:
+  trunk:
+    - GrowingAnalytics
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  growingio_sdk_autotracker_plugin:
+    :path: ".symlinks/plugins/growingio_sdk_autotracker_plugin/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  GrowingAnalytics: b049dcea00a4b01667fe04848a5f16a736e4f35d
+  growingio_sdk_autotracker_plugin: 05a52287e674f2938f6cd5788e45eadb9a606001
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.10.1
