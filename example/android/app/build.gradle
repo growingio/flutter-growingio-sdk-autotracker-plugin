@@ -25,7 +25,7 @@ apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 29
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.growingio.growingio_sdk_autotracker_plugin_example"
@@ -50,5 +50,5 @@ flutter {
 
 dependencies {
     //请使用3.2.1之后正式版本，这里仅为了跳过3.2.0版本而使用了快照版
-    implementation 'com.growingio.android:autotracker:3.2.1-06292-SNAPSHOT'
+    implementation 'com.growingio.android:autotracker-cdp:3.2.3-10151-SNAPSHOT'
 }

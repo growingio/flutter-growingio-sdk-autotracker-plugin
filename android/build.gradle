@@ -34,5 +34,5 @@ android {
 }
 
 dependencies {
-    implementation 'com.growingio.android:autotracker:latest.release'
+    implementation 'com.growingio.android:autotracker-cdp:3.3.0-10151-SNAPSHOT'
 }
