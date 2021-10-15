@@ -74,15 +74,15 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _clickSetVisitorAttributes(){
-    GrowingAutotracker.getInstance().setVisitorAttributes({
-      'testKey': 'testValue', 'testNumKey': '2333'
-    });
+    // GrowingAutotracker.getInstance().setVisitorAttributes({
+    //   'testKey': 'testValue', 'testNumKey': '2333'
+    // });
   }
 
   void _clickSetConversionVariables(){
-    GrowingAutotracker.getInstance().setConversionVariables({
-      'testKey': 'testValue', 'testNumKey': '2333'
-    });
+    // GrowingAutotracker.getInstance().setConversionVariables({
+    //   'testKey': 'testValue', 'testNumKey': '2333'
+    // });
   }
 
   void _clickSetLoginUserId(){

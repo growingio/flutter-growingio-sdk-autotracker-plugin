@@ -14,6 +14,9 @@ import com.growingio.android.sdk.track.TrackMainThread;
 import com.growingio.android.sdk.track.events.PageEvent;
 import com.growingio.android.sdk.track.events.ViewElementEvent;
 import com.growingio.android.sdk.track.events.AutotrackEventType;
+import com.growingio.android.sdk.track.events.AutotrackEventType;
+import com.growingio.android.circler.screenshot.GrowingFlutterPlugin;
+import com.growingio.android.circler.screenshot.ScreenshotProvider;
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
@@ -29,10 +32,24 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
 
+  private boolean isWebcircle = false;
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "growingio_sdk_autotracker_plugin");
     channel.setMethodCallHandler(this);
+    GrowingFlutterPlugin.getInstance().addNativeListener(new GrowingFlutterPlugin.OnNativeListener() {
+      @Override
+      public void onNativeCircleStart() {
+        channel.invokeMethod("WebCircle",true);
+        isWebcircle = true;
+      }
+
+      @Override
+      public void onNativeCircleStop() {
+        channel.invokeMethod("WebCircle",false);
+        isWebcircle = false;
+      }
+    });
   }
 
   @Override
@@ -55,6 +72,8 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
       onFlutterViewChangeEvent(call);
     }else if (call.method.equals("flutterPageEvent")) {
       onFlutterPageEvent(call);
+    }else if (call.method.equals("flutterWebCircleEvent")) {
+      onFlutterWebCircleEvent(call);
     }else {
       result.notImplemented();
       return;
@@ -87,8 +106,19 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
                     .setIndex(index)
                     .setTextValue(textValue)
     );
+    if (isWebcircle) {
+      ScreenshotProvider.get().refreshScreenshot();
+    }
   }
 
+  private void onFlutterWebCircleEvent(MethodCall call) {
+    Map<String,Object> params = (Map<String, Object>)call.arguments;
+    Log.d("TAG", "onFlutterWebCircleEvent: " + params);
+    GrowingFlutterPlugin.getInstance().onFlutterCircleData(params);
+    if (isWebcircle) {
+      ScreenshotProvider.get().refreshScreenshot();
+    }
+  }
 
   private void onFlutterPageEvent(MethodCall call){
     Map<String,Object> params = (Map<String, Object>)call.arguments;
@@ -103,6 +133,9 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
                     .setTimestamp(ts)
                     .setOrientation(orientation)
     );
+    if (isWebcircle) {
+      ScreenshotProvider.get().refreshScreenshot();
+    }
   }
 
   private void onSetConversionVariables(MethodCall call){

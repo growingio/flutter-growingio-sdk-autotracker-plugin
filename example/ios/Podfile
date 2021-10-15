@@ -29,6 +29,8 @@ flutter_ios_podfile_setup
 
 target 'Runner' do
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+    pod 'GrowingAnalytics-cdp/Autotracker', :path => '../../../../git-growing/growingio-sdk-ios-autotracker-cdp'
+    pod 'GrowingAnalytics/AutotrackerCore', :path => '../../../../git-growing/growingio-sdk-ios-autotracker'
 end
 
 post_install do |installer|

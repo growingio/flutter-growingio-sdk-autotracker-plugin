@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "GeneratedPluginRegistrant.h"
-#import <GrowingAnalytics/GrowingAutotracker.h>
+#import <GrowingAnalytics-cdp/GrowingAutotracker.h>
 
 @implementation AppDelegate
 
@@ -8,6 +8,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     GrowingAutotrackConfiguration *configuration = [GrowingTrackConfiguration configurationWithProjectId:@"0a1b4118dd954ec3bcc69da5138bdb96"];
     configuration.debugEnabled = YES;
+    configuration.dataSourceId = @"8da3f7b7d7558149";
     configuration.dataCollectionServerHost = @"https://run.mocky.io/v3/08999138-a180-431d-a136-051f3c6bd306";
     [GrowingAutotracker startWithConfiguration:configuration launchOptions:launchOptions];
     [GeneratedPluginRegistrant registerWithRegistry:self];

@@ -1,6 +1,7 @@
 buildscript {
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
         jcenter()
         maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
@@ -8,13 +9,14 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.2'
-        classpath 'com.growingio.android:autotracker:3.2.1-06292-SNAPSHOT'
+        classpath 'com.growingio.android:autotracker:3.2.3-10151-SNAPSHOT'
     }
 }
 
 allprojects {
     repositories {
         google()
+        mavenLocal()
         mavenCentral()
         jcenter()
         maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
