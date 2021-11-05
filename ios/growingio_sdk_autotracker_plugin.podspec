@@ -16,8 +16,8 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'GrowingAnalytics/FlutterMix', '3.3.1-beta'
-  s.dependency 'GrowingAnalytics-cdp/Autotracker', '3.3.1-beta'
+  s.dependency 'GrowingAnalytics/Flutter', '>=3.3.2-beta'
+  s.dependency 'GrowingAnalytics-cdp/Autotracker', '>=3.3.2-beta'
   s.platform = :ios, '8.0'
 
   # Flutter.framework does not contain a i386 slice.
