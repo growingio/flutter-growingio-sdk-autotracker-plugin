@@ -50,5 +50,5 @@ flutter {
 
 dependencies {
     //请使用3.2.1之后正式版本，这里仅为了跳过3.2.0版本而使用了快照版
-    implementation 'com.growingio.android:autotracker-cdp:3.3.2-10151-SNAPSHOT'
+    implementation 'com.growingio.android:autotracker-cdp:3.3.2-11051-SNAPSHOT'
 }
