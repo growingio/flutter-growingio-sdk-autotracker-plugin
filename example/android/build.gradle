@@ -9,7 +9,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.2'
-        classpath 'com.growingio.android:autotracker:3.2.3-10151-SNAPSHOT'
+        classpath 'com.growingio.android:autotracker:3.3.2-10151-SNAPSHOT'
     }
 }
 
