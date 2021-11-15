@@ -1,61 +1,67 @@
 PODS:
   - Flutter (1.0.0)
-  - GrowingAnalytics-cdp/Autotracker (3.2.2-beta):
-    - GrowingAnalytics-cdp/TrackerCore (= 3.2.2-beta)
-    - GrowingAnalytics/AutotrackerCore (= 3.2.2-beta)
-    - GrowingAnalytics/Encryption (= 3.2.2-beta)
-    - GrowingAnalytics/MobileDebugger (= 3.2.2-beta)
-    - GrowingAnalytics/Network (= 3.2.2-beta)
-    - GrowingAnalytics/WebCircle (= 3.2.2-beta)
-  - GrowingAnalytics-cdp/TrackerCore (3.2.2-beta):
-    - GrowingAnalytics/TrackerCore (= 3.2.2-beta)
-  - GrowingAnalytics/AutotrackerCore (3.2.2-beta):
+  - GrowingAnalytics-cdp/Autotracker (3.3.2-beta):
+    - GrowingAnalytics-cdp/TrackerCore (= 3.3.2-beta)
+    - GrowingAnalytics/AutotrackerCore (= 3.3.2-beta)
+    - GrowingAnalytics/Compression (= 3.3.2-beta)
+    - GrowingAnalytics/Database (= 3.3.2-beta)
+    - GrowingAnalytics/Encryption (= 3.3.2-beta)
+    - GrowingAnalytics/Hybrid (= 3.3.2-beta)
+    - GrowingAnalytics/MobileDebugger (= 3.3.2-beta)
+    - GrowingAnalytics/Network (= 3.3.2-beta)
+    - GrowingAnalytics/WebCircle (= 3.3.2-beta)
+  - GrowingAnalytics-cdp/TrackerCore (3.3.2-beta):
+    - GrowingAnalytics/TrackerCore (= 3.3.2-beta)
+  - GrowingAnalytics/AutotrackerCore (3.3.2-beta):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/Encryption (3.2.2-beta):
+  - GrowingAnalytics/Compression (3.3.2-beta):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/FlutterMix (3.2.2-beta):
+  - GrowingAnalytics/Database (3.3.2-beta):
+    - GrowingAnalytics/TrackerCore
+  - GrowingAnalytics/Encryption (3.3.2-beta):
+    - GrowingAnalytics/TrackerCore
+  - GrowingAnalytics/Flutter (3.3.2-beta):
     - GrowingAnalytics/WebCircle
-  - GrowingAnalytics/Hybrid (3.2.2-beta):
+  - GrowingAnalytics/Hybrid (3.3.2-beta):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/MobileDebugger (3.2.2-beta):
+  - GrowingAnalytics/MobileDebugger (3.3.2-beta):
     - GrowingAnalytics/TrackerCore
     - GrowingAnalytics/WebSocket
-  - GrowingAnalytics/Network (3.2.2-beta):
+  - GrowingAnalytics/Network (3.3.2-beta):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/TrackerCore (3.2.2-beta)
-  - GrowingAnalytics/WebCircle (3.2.2-beta):
+  - GrowingAnalytics/TrackerCore (3.3.2-beta)
+  - GrowingAnalytics/WebCircle (3.3.2-beta):
     - GrowingAnalytics/AutotrackerCore
     - GrowingAnalytics/Hybrid
     - GrowingAnalytics/WebSocket
-  - GrowingAnalytics/WebSocket (3.2.2-beta):
+  - GrowingAnalytics/WebSocket (3.3.2-beta):
     - GrowingAnalytics/TrackerCore
   - growingio_sdk_autotracker_plugin (1.0.0):
     - Flutter
-    - GrowingAnalytics-cdp/Autotracker
-    - GrowingAnalytics/FlutterMix
+    - GrowingAnalytics-cdp/Autotracker (>= 3.3.2-beta)
+    - GrowingAnalytics/Flutter (>= 3.3.2-beta)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - GrowingAnalytics-cdp/Autotracker (from `../../../../git-growing/growingio-sdk-ios-autotracker-cdp`)
-  - GrowingAnalytics/AutotrackerCore (from `../../../../git-growing/growingio-sdk-ios-autotracker`)
   - growingio_sdk_autotracker_plugin (from `.symlinks/plugins/growingio_sdk_autotracker_plugin/ios`)
+
+SPEC REPOS:
+  trunk:
+    - GrowingAnalytics
+    - GrowingAnalytics-cdp
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  GrowingAnalytics:
-    :path: "../../../../git-growing/growingio-sdk-ios-autotracker"
-  GrowingAnalytics-cdp:
-    :path: "../../../../git-growing/growingio-sdk-ios-autotracker-cdp"
   growingio_sdk_autotracker_plugin:
     :path: ".symlinks/plugins/growingio_sdk_autotracker_plugin/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  GrowingAnalytics: 7b8d37d66f905f3343439d827994cd9b25a86089
-  GrowingAnalytics-cdp: bb2c721d2eb6ee75cd9cbd6e34355cc10b8b1e57
-  growingio_sdk_autotracker_plugin: 4f0149ea265aa00713a74768567c6e7d6d84417f
+  GrowingAnalytics: 8e04fd7fdc6554582784403ef479d8f2d42118b8
+  GrowingAnalytics-cdp: 0d1247e082ee4d58fb30677f82b70139388a5fa4
+  growingio_sdk_autotracker_plugin: 9b234c8e40ea867a67c330943f46bd7b5ef09bcc
 
-PODFILE CHECKSUM: 55098f5bef5e2729f34171a14aa9accd62cd78b0
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
 
 COCOAPODS: 1.10.1
