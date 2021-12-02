@@ -111,7 +111,22 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
                     .setTextValue(textValue)
     );
     if (isWebcircle) {
+      this.updateScreenshot();
       ScreenshotProvider.get().refreshScreenshot();
+    }
+  }
+
+  private void updateScreenshot() {
+    try {
+      Bitmap screenshotBitmap = binding.getFlutterEngine().getRenderer().getBitmap();
+      ByteArrayOutputStream stream = new ByteArrayOutputStream();
+      screenshotBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+      stream.flush();
+      stream.close();
+      screenshotBitmap.recycle();
+      GrowingFlutterPlugin.getInstance().setSrceenshotBytes(stream.toByteArray());
+    } catch (Exception e) {
+      Log.e("updateScreenshot",e.toString());
     }
   }
 
@@ -120,18 +135,7 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
     Log.d("TAG", "onFlutterWebCircleEvent: " + params);
     GrowingFlutterPlugin.getInstance().onFlutterCircleData(params);
     if (isWebcircle) {
-      try {
-        Bitmap screenshotBitmap = binding.getFlutterEngine().getRenderer().getBitmap();
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        screenshotBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-        stream.flush();
-        stream.close();
-        screenshotBitmap.recycle();
-        GrowingFlutterPlugin.getInstance().setSrceenshotBytes(stream.toByteArray());
-      } catch (Exception e) {
-        Log.e("FlutterScreenshot",e.toString());
-      }
-
+      this.updateScreenshot();
       ScreenshotProvider.get().refreshScreenshot();
     }
   }
@@ -150,6 +154,7 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
                     .setOrientation(orientation)
     );
     if (isWebcircle) {
+      this.updateScreenshot();
       ScreenshotProvider.get().refreshScreenshot();
     }
   }
