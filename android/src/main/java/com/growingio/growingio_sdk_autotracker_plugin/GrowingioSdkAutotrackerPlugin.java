@@ -2,11 +2,14 @@ package com.growingio.growingio_sdk_autotracker_plugin;
 
 import android.content.res.Configuration;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import com.growingio.android.sdk.autotrack.GrowingAutotracker;
 import com.growingio.android.sdk.TrackerContext;
@@ -31,10 +34,11 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
   /// This local reference serves to register the plugin with the Flutter Engine and unregister it
   /// when the Flutter Engine is detached from the Activity
   private MethodChannel channel;
-
+  private FlutterPluginBinding binding;
   private boolean isWebcircle = false;
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
+    binding = flutterPluginBinding;
     channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "growingio_sdk_autotracker_plugin");
     channel.setMethodCallHandler(this);
     GrowingFlutterPlugin.getInstance().addNativeListener(new GrowingFlutterPlugin.OnNativeListener() {
@@ -116,6 +120,18 @@ public class GrowingioSdkAutotrackerPlugin implements FlutterPlugin, MethodCallH
     Log.d("TAG", "onFlutterWebCircleEvent: " + params);
     GrowingFlutterPlugin.getInstance().onFlutterCircleData(params);
     if (isWebcircle) {
+      try {
+        Bitmap screenshotBitmap = binding.getFlutterEngine().getRenderer().getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        screenshotBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+        stream.flush();
+        stream.close();
+        screenshotBitmap.recycle();
+        GrowingFlutterPlugin.getInstance().setSrceenshotBytes(stream.toByteArray());
+      } catch (Exception e) {
+        Log.e("FlutterScreenshot",e.toString());
+      }
+
       ScreenshotProvider.get().refreshScreenshot();
     }
   }
