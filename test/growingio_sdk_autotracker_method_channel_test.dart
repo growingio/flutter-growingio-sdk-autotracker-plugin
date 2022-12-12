@@ -1,9 +1,10 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:growingio_sdk_autotracker_plugin/growingio_sdk_autotracker_plugin.dart';
+import 'package:growingio_sdk_autotracker/growingio_sdk_autotracker_method_channel.dart';
 
 void main() {
-  const MethodChannel channel = MethodChannel('growingio_sdk_autotracker_plugin');
+  MethodChannelGrowingioSdkAutotracker platform = MethodChannelGrowingioSdkAutotracker();
+  const MethodChannel channel = MethodChannel('growingio_sdk_autotracker');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -18,6 +19,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await GrowingioSdkAutotrackerPlugin.platformVersion, '42');
+    expect(await platform.getPlatformVersion(), '42');
   });
 }

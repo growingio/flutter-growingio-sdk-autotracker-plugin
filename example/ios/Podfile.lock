@@ -1,67 +1,121 @@
 PODS:
   - Flutter (1.0.0)
-  - GrowingAnalytics-cdp/Autotracker (3.3.2-beta):
-    - GrowingAnalytics-cdp/TrackerCore (= 3.3.2-beta)
-    - GrowingAnalytics/AutotrackerCore (= 3.3.2-beta)
-    - GrowingAnalytics/Compression (= 3.3.2-beta)
-    - GrowingAnalytics/Database (= 3.3.2-beta)
-    - GrowingAnalytics/Encryption (= 3.3.2-beta)
-    - GrowingAnalytics/Hybrid (= 3.3.2-beta)
-    - GrowingAnalytics/MobileDebugger (= 3.3.2-beta)
-    - GrowingAnalytics/Network (= 3.3.2-beta)
-    - GrowingAnalytics/WebCircle (= 3.3.2-beta)
-  - GrowingAnalytics-cdp/TrackerCore (3.3.2-beta):
-    - GrowingAnalytics/TrackerCore (= 3.3.2-beta)
-  - GrowingAnalytics/AutotrackerCore (3.3.2-beta):
+  - GrowingAnalytics-cdp/Autotracker (3.4.5):
+    - GrowingAnalytics-cdp/TrackerCore (= 3.4.5)
+    - GrowingAnalytics/AutotrackerCore (= 3.4.5)
+    - GrowingAnalytics/DefaultServices (= 3.4.5)
+    - GrowingAnalytics/Hybrid (= 3.4.5)
+    - GrowingAnalytics/MobileDebugger (= 3.4.5)
+    - GrowingAnalytics/WebCircle (= 3.4.5)
+  - GrowingAnalytics-cdp/TrackerCore (3.4.5):
+    - GrowingAnalytics/TrackerCore (= 3.4.5)
+  - GrowingAnalytics/AutotrackerCore (3.4.5):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/Compression (3.3.2-beta):
+    - GrowingUtils/AutotrackerCore (= 0.0.4)
+  - GrowingAnalytics/Compression (3.4.5):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/Database (3.3.2-beta):
+  - GrowingAnalytics/Database (3.4.5):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/Encryption (3.3.2-beta):
+  - GrowingAnalytics/DefaultServices (3.4.5):
+    - GrowingAnalytics/Compression
+    - GrowingAnalytics/Database
+    - GrowingAnalytics/Encryption
+    - GrowingAnalytics/Network
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/Flutter (3.3.2-beta):
-    - GrowingAnalytics/WebCircle
-  - GrowingAnalytics/Hybrid (3.3.2-beta):
+  - GrowingAnalytics/Encryption (3.4.5):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/MobileDebugger (3.3.2-beta):
+  - GrowingAnalytics/Hybrid (3.4.5):
+    - GrowingAnalytics/TrackerCore
+  - GrowingAnalytics/MobileDebugger (3.4.5):
     - GrowingAnalytics/TrackerCore
     - GrowingAnalytics/WebSocket
-  - GrowingAnalytics/Network (3.3.2-beta):
+  - GrowingAnalytics/Network (3.4.5):
     - GrowingAnalytics/TrackerCore
-  - GrowingAnalytics/TrackerCore (3.3.2-beta)
-  - GrowingAnalytics/WebCircle (3.3.2-beta):
+  - GrowingAnalytics/TrackerCore (3.4.5):
+    - GrowingUtils/TrackerCore (= 0.0.4)
+  - GrowingAnalytics/WebCircle (3.4.5):
     - GrowingAnalytics/AutotrackerCore
     - GrowingAnalytics/Hybrid
     - GrowingAnalytics/WebSocket
-  - GrowingAnalytics/WebSocket (3.3.2-beta):
+  - GrowingAnalytics/WebSocket (3.4.5):
     - GrowingAnalytics/TrackerCore
-  - growingio_sdk_autotracker_plugin (1.0.0):
+  - GrowingAPM/Core (0.0.12):
+    - GrowingUtils/TrackerCore
+  - GrowingAPM/CrashMonitor (0.0.12):
+    - GrowingAPM/Core
+  - GrowingAPM/UIMonitor (0.0.12):
+    - GrowingAPM/Core
+  - growingio_sdk_autotracker (0.0.1):
     - Flutter
-    - GrowingAnalytics-cdp/Autotracker (>= 3.3.2-beta)
-    - GrowingAnalytics/Flutter (>= 3.3.2-beta)
+    - GrowingAnalytics-cdp/Autotracker
+  - GrowingToolsKit (1.1.0):
+    - GrowingToolsKit/Default (= 1.1.0)
+  - GrowingToolsKit/APMCore (1.1.0):
+    - GrowingAPM/Core
+    - GrowingToolsKit/Core
+  - GrowingToolsKit/Core (1.1.0):
+    - GrowingToolsKit/Res
+  - GrowingToolsKit/CrashMonitor (1.1.0):
+    - GrowingAPM/CrashMonitor
+    - GrowingToolsKit/APMCore
+  - GrowingToolsKit/Default (1.1.0):
+    - GrowingToolsKit/Core
+    - GrowingToolsKit/CrashMonitor
+    - GrowingToolsKit/EventsList
+    - GrowingToolsKit/LaunchTime
+    - GrowingToolsKit/NetFlow
+    - GrowingToolsKit/Realtime
+    - GrowingToolsKit/SDKInfo
+    - GrowingToolsKit/Settings
+    - GrowingToolsKit/XPathTrack
+  - GrowingToolsKit/EventsList (1.1.0):
+    - GrowingToolsKit/Core
+  - GrowingToolsKit/LaunchTime (1.1.0):
+    - GrowingAPM/UIMonitor
+    - GrowingToolsKit/APMCore
+  - GrowingToolsKit/NetFlow (1.1.0):
+    - GrowingToolsKit/Core
+  - GrowingToolsKit/Realtime (1.1.0):
+    - GrowingToolsKit/Core
+  - GrowingToolsKit/Res (1.1.0)
+  - GrowingToolsKit/SDKInfo (1.1.0):
+    - GrowingToolsKit/Core
+  - GrowingToolsKit/Settings (1.1.0):
+    - GrowingToolsKit/Core
+  - GrowingToolsKit/XPathTrack (1.1.0):
+    - GrowingToolsKit/Core
+  - GrowingUtils/AutotrackerCore (0.0.4):
+    - GrowingUtils/TrackerCore
+  - GrowingUtils/TrackerCore (0.0.4)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - growingio_sdk_autotracker_plugin (from `.symlinks/plugins/growingio_sdk_autotracker_plugin/ios`)
+  - growingio_sdk_autotracker (from `.symlinks/plugins/growingio_sdk_autotracker/ios`)
+  - GrowingToolsKit
 
 SPEC REPOS:
   trunk:
     - GrowingAnalytics
     - GrowingAnalytics-cdp
+    - GrowingAPM
+    - GrowingToolsKit
+    - GrowingUtils
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  growingio_sdk_autotracker_plugin:
-    :path: ".symlinks/plugins/growingio_sdk_autotracker_plugin/ios"
+  growingio_sdk_autotracker:
+    :path: ".symlinks/plugins/growingio_sdk_autotracker/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  GrowingAnalytics: 8e04fd7fdc6554582784403ef479d8f2d42118b8
-  GrowingAnalytics-cdp: 0d1247e082ee4d58fb30677f82b70139388a5fa4
-  growingio_sdk_autotracker_plugin: 9b234c8e40ea867a67c330943f46bd7b5ef09bcc
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  GrowingAnalytics: 941401ad2a361f2fa68d7b5cf35a70895f80bdfa
+  GrowingAnalytics-cdp: e60917e415a79adcf452827933ec02f1cddb9cb0
+  GrowingAPM: 0bb4a1a1dd476a62cace52e1e961df269cd3a66b
+  growingio_sdk_autotracker: cbdab6491d61eec133024c68c5a96b27939c713e
+  GrowingToolsKit: c05f1190f91263ea128a3c156395d6c8fbb48329
+  GrowingUtils: fd6e7d1a87c57dbda30967bbdcbc14546c68cd22
 
-PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+PODFILE CHECKSUM: 49852667551baa9fcd9e853a855dd323a078a598
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

@@ -1,38 +1,35 @@
-group 'com.growingio.growingio_sdk_autotracker_plugin'
-version '1.0-SNAPSHOT'
+group 'com.growingio.flutter.plugins.analytics.growingio_sdk_autotracker'
+version '1.0'
 
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:7.1.2'
     }
 }
 
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 }
 
 apply plugin: 'com.android.library'
 
-
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/java'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+
     defaultConfig {
         minSdkVersion 16
     }
-}
-
-dependencies {
-    implementation 'com.growingio.android:autotracker-cdp:3.3.2-11051-SNAPSHOT'
 }

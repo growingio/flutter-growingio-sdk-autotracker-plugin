@@ -1,25 +1,20 @@
 buildscript {
+    ext.kotlin_version = '1.6.10'
     repositories {
         google()
-        mavenLocal()
         mavenCentral()
-        jcenter()
-        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
-        classpath 'com.growingio.android:autotracker:3.3.2-11051-SNAPSHOT'
+        classpath 'com.android.tools.build:gradle:7.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
 allprojects {
     repositories {
         google()
-        mavenLocal()
         mavenCentral()
-        jcenter()
-        maven { url "https://s01.oss.sonatype.org/content/repositories/snapshots/" }
     }
 }
 

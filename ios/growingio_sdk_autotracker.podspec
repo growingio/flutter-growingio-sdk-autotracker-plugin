@@ -1,13 +1,13 @@
 #
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html.
-# Run `pod lib lint growingio_sdk_autotracker_plugin.podspec` to validate before publishing.
+# Run `pod lib lint growingio_sdk_autotracker.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'growingio_sdk_autotracker_plugin'
-  s.version          = '1.0.0'
-  s.summary          = 'A new flutter plugin project.'
+  s.name             = 'growingio_sdk_autotracker'
+  s.version          = '0.0.1'
+  s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
-A new flutter plugin project.
+A new Flutter plugin project.
                        DESC
   s.homepage         = 'http://example.com'
   s.license          = { :file => '../LICENSE' }
@@ -16,10 +16,10 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'GrowingAnalytics/Flutter', '>=3.3.2-beta'
-  s.dependency 'GrowingAnalytics-cdp/Autotracker', '>=3.3.2-beta'
-  s.platform = :ios, '8.0'
+  s.platform = :ios, '9.0'
 
   # Flutter.framework does not contain a i386 slice.
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  
+  s.dependency 'GrowingAnalytics-cdp/Autotracker'
 end
