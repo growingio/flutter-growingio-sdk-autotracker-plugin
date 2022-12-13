@@ -2,6 +2,58 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'growingio_sdk_autotracker_method_channel.dart';
 
+enum GrowingFilterEvent {
+  visit,
+  custom,
+  loginUserAttributes,
+
+  // autotrack
+  page,
+  appClosed,
+  viewClick,
+  viewChange,
+  formSubmit,
+  clickChangeSubmit,
+
+  // advert
+  activate,
+  reengage,
+}
+
+enum GrowingIgnoreField {
+  networkState,
+  screenWidth,
+  screenHeight,
+  deviceBrand,
+  deviceModel,
+  deviceType,
+  all,
+}
+
+const growingFilterEventValues = {
+  GrowingFilterEvent.visit: (1 << 0),
+  GrowingFilterEvent.custom: (1 << 1),
+  GrowingFilterEvent.loginUserAttributes: (1 << 2),
+  GrowingFilterEvent.page: (1 << 3),
+  GrowingFilterEvent.appClosed: (1 << 4),
+  GrowingFilterEvent.viewClick: (1 << 5),
+  GrowingFilterEvent.viewChange: (1 << 6),
+  GrowingFilterEvent.formSubmit: (1 << 7),
+  GrowingFilterEvent.clickChangeSubmit: ((1 << 5) + (1 << 6) + (1 << 7)),
+  GrowingFilterEvent.activate: (1 << 8),
+  GrowingFilterEvent.reengage: (1 << 9),
+};
+
+const growingIgnoreFieldValues = {
+  GrowingIgnoreField.networkState: (1 << 0),
+  GrowingIgnoreField.screenWidth: (1 << 1),
+  GrowingIgnoreField.screenHeight: (1 << 2),
+  GrowingIgnoreField.deviceBrand: (1 << 3),
+  GrowingIgnoreField.deviceModel: (1 << 4),
+  GrowingIgnoreField.deviceType: (1 << 5),
+  GrowingIgnoreField.all: ((1 << 0) + (1 << 1) + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 5)),
+};
+
 abstract class GrowingioSdkAutotrackerPlatform extends PlatformInterface {
   /// Constructs a GrowingioSdkAutotrackerPlatform.
   GrowingioSdkAutotrackerPlatform() : super(token: _token);
@@ -77,7 +129,7 @@ abstract class GrowingioSdkAutotrackerPlatform extends PlatformInterface {
     throw UnimplementedError('setLoginUserAttributes() has not been implemented.');
   }
 
-  Future<String?> get deviceId {
+  Future<String?> getDeviceId() async {
     throw UnimplementedError('get {deviceId} has not been implemented.');
   }
 
@@ -88,9 +140,9 @@ abstract class GrowingioSdkAutotrackerPlatform extends PlatformInterface {
       throw UnimplementedError('trackCustomEvent() has not been implemented.');
   }
 
-  Future<String> trackTimerStart({
+  Future<String?> trackTimerStart({
     required String eventName, 
-    }) {
+    }) async {
       throw UnimplementedError('trackTimerStart() has not been implemented.');
   }
 

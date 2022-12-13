@@ -3,58 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'growingio_sdk_autotracker_platform_interface.dart';
 
-enum GrowingFilterEvent {
-  visit,
-  custom,
-  loginUserAttributes,
-
-  // autotrack
-  page,
-  appClosed,
-  viewClick,
-  viewChange,
-  formSubmit,
-  clickChangeSubmit,
-
-  // advert
-  activate,
-  reengage,
-}
-
-enum GrowingIgnoreField {
-  networkState,
-  screenWidth,
-  screenHeight,
-  deviceBrand,
-  deviceModel,
-  deviceType,
-  all,
-}
-
-const growingFilterEventValues = {
-  GrowingFilterEvent.visit: (1 << 0),
-  GrowingFilterEvent.custom: (1 << 1),
-  GrowingFilterEvent.loginUserAttributes: (1 << 2),
-  GrowingFilterEvent.page: (1 << 3),
-  GrowingFilterEvent.appClosed: (1 << 4),
-  GrowingFilterEvent.viewClick: (1 << 5),
-  GrowingFilterEvent.viewChange: (1 << 6),
-  GrowingFilterEvent.formSubmit: (1 << 7),
-  GrowingFilterEvent.clickChangeSubmit: ((1 << 5) + (1 << 6) + (1 << 7)),
-  GrowingFilterEvent.activate: (1 << 8),
-  GrowingFilterEvent.reengage: (1 << 9),
-};
-
-const growingIgnoreFieldValues = {
-  GrowingIgnoreField.networkState: (1 << 0),
-  GrowingIgnoreField.screenWidth: (1 << 1),
-  GrowingIgnoreField.screenHeight: (1 << 2),
-  GrowingIgnoreField.deviceBrand: (1 << 3),
-  GrowingIgnoreField.deviceModel: (1 << 4),
-  GrowingIgnoreField.deviceType: (1 << 5),
-  GrowingIgnoreField.all: ((1 << 0) + (1 << 1) + (1 << 2) + (1 << 3) + (1 << 4) + (1 << 5)),
-};
-
 /// An implementation of [GrowingioSdkAutotrackerPlatform] that uses method channels.
 class MethodChannelGrowingioSdkAutotracker extends GrowingioSdkAutotrackerPlatform {
   /// The method channel used to interact with the native platform.
@@ -83,6 +31,7 @@ class MethodChannelGrowingioSdkAutotracker extends GrowingioSdkAutotrackerPlatfo
     int? excludeEvent, // growingFilterEventValues
     int? ignoreField, // growingIgnoreFieldValues
     }) async {
+    try {
       Map<String, Object> args = {
         "projectId": projectId,
         "dataCollectionServerHost": dataCollectionServerHost,
@@ -121,11 +70,18 @@ class MethodChannelGrowingioSdkAutotracker extends GrowingioSdkAutotrackerPlatfo
         args['ignoreField'] = ignoreField;
       }
       return await methodChannel.invokeMethod("startWithConfiguration", args);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> setDataCollectionEnabled(bool enabled) async {
-    return await methodChannel.invokeMethod("setDataCollectionEnabled", enabled);
+    try {
+      return await methodChannel.invokeMethod("setDataCollectionEnabled", enabled);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
@@ -133,16 +89,24 @@ class MethodChannelGrowingioSdkAutotracker extends GrowingioSdkAutotrackerPlatfo
     required String userId,
     String? userKey,
   }) async {
-    Map<String, String> args = {"userId": userId};
+    try {
+      Map<String, String> args = {"userId": userId};
       if (userKey != null) {
         args['userKey'] = userKey;
       }
-    return await methodChannel.invokeMethod("setLoginUserId", args);
+      return await methodChannel.invokeMethod("setLoginUserId", args);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> cleanLoginUserId() async {
-    return await methodChannel.invokeMethod("cleanLoginUserId");
+    try {
+      return await methodChannel.invokeMethod("cleanLoginUserId");
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
@@ -150,30 +114,43 @@ class MethodChannelGrowingioSdkAutotracker extends GrowingioSdkAutotrackerPlatfo
     required double latitude,
     required double longitude,
   }) async {
-    return await methodChannel.invokeMethod("setLocation", {
-      "latitude": latitude,
-      "longitude": longitude
+    try {
+      return await methodChannel.invokeMethod("setLocation", {
+        "latitude": latitude,
+        "longitude": longitude
       });
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> cleanLocation() async {
-    return await methodChannel.invokeMethod("cleanLocation");
+    try {
+      return await methodChannel.invokeMethod("cleanLocation");
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> setLoginUserAttributes({
     required Map<String, String> attributes,
   }) async {
-    return await methodChannel.invokeMethod("setLoginUserAttributes", attributes);
+    try {
+      return await methodChannel.invokeMethod("setLoginUserAttributes", attributes);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
-  Future<String?> get deviceId {
+  Future<String?> getDeviceId() async {
     try {
-      return methodChannel.invokeMethod<String?>('getDeviceId');
+      final deviceId = await methodChannel.invokeMethod<String>('getDeviceId');
+      return deviceId;
     } catch (e, s) {
-      
+      Error.throwWithStackTrace(e, s);
     }
   }
 
@@ -182,32 +159,49 @@ class MethodChannelGrowingioSdkAutotracker extends GrowingioSdkAutotrackerPlatfo
     required String eventName, 
     Map<String, String>? attributes
     }) async {
+    try {
       Map<String, Object> args = {"eventName": eventName};
       if (attributes != null) {
         args['attributes'] = attributes;
       }
       return await methodChannel.invokeMethod("trackCustomEvent", args);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
-  Future<String> trackTimerStart({
+  Future<String?> trackTimerStart({
     required String eventName, 
-    }) {
-      return methodChannel.invokeMethod<String>("trackTimerStart", eventName);
+    }) async {
+    try {
+      final timerId = await methodChannel.invokeMethod<String?>("trackTimerStart", eventName);
+      return timerId;
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> trackTimerPause({
     required String timerId, 
     }) async {
+    try {
       return await methodChannel.invokeMethod("trackTimerPause", timerId);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> trackTimerResume({
     required String timerId, 
     }) async {
+    try {
       return await methodChannel.invokeMethod("trackTimerResume", timerId);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
@@ -215,22 +209,34 @@ class MethodChannelGrowingioSdkAutotracker extends GrowingioSdkAutotrackerPlatfo
     required String timerId, 
     Map<String, String>? attributes,
     }) async {
+    try {
       Map<String, Object> args = {"timerId": timerId};
       if (attributes != null) {
         args['attributes'] = attributes;
       }
       return await methodChannel.invokeMethod("trackTimerEnd", args);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> removeTimer({
     required String timerId, 
     }) async {
+    try {
       return await methodChannel.invokeMethod("removeTimer", timerId);
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 
   @override
   Future<void> clearTrackTimer() async {
+    try {
       return await methodChannel.invokeMethod("clearTrackTimer");
+    } catch (e, s) {
+      Error.throwWithStackTrace(e, s);
+    }
   }
 }
